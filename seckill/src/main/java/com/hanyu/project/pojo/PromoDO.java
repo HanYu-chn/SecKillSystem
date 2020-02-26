@@ -1,6 +1,8 @@
 package com.hanyu.project.pojo;
 
-public class PromoDO {
+import java.io.Serializable;
+
+public class PromoDO implements Serializable {
     private int id;
     private int status; //1未开始,2正开始,3结束
     private String name;

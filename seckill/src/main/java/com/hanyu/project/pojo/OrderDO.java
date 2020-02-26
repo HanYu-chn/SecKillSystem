@@ -1,6 +1,8 @@
 package com.hanyu.project.pojo;
 
-public class OrderDO {
+import java.io.Serializable;
+
+public class OrderDO implements Serializable {
     private String id;
     private int userId;
     private int itemId;

@@ -1,6 +1,8 @@
 package com.hanyu.project.model;
 
-public class OrderModel {
+import java.io.Serializable;
+
+public class OrderModel implements Serializable {
     private String id;
     private int userId;
     private int itemId;

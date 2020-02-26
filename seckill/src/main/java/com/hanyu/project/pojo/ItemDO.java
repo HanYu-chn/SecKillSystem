@@ -1,6 +1,8 @@
 package com.hanyu.project.pojo;
 
-public class ItemDO {
+import java.io.Serializable;
+
+public class ItemDO implements Serializable {
     private int id;
     private String name;
     private String pictureUrl;

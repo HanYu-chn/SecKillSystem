@@ -38,4 +38,8 @@ public class ItemServiceImp implements ItemService{
         return itemModel;
     }
 
+    @Override
+    public ItemDO getItemDO(Integer id) {
+        return itemMapper.getItemById(id);
+    }
 }

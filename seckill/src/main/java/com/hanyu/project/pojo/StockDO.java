@@ -1,6 +1,8 @@
 package com.hanyu.project.pojo;
 
-public class StockDO {
+import java.io.Serializable;
+
+public class StockDO implements Serializable {
     private int id;
     private int stock;
     private int sales;

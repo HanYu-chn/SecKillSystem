@@ -1,6 +1,8 @@
 package com.hanyu.project.model;
 
-public class PromoModel {
+import java.io.Serializable;
+
+public class PromoModel implements Serializable {
     private int id;
     private int status; //1未开始,2正开始,3结束
     private String name;

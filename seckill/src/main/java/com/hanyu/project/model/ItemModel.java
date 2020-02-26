@@ -2,7 +2,9 @@ package com.hanyu.project.model;
 
 import com.hanyu.project.pojo.PromoDO;
 
-public class ItemModel {
+import java.io.Serializable;
+
+public class ItemModel implements Serializable {
     private int id;
     private String name;
     private String pictureUrl;

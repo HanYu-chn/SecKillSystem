@@ -1,6 +1,8 @@
 package com.hanyu.project.model;
 
-public class UserModel {
+import java.io.Serializable;
+
+public class UserModel implements Serializable {
     private int id;
     private String name;
     private String telephone;

@@ -1,6 +1,8 @@
 package com.hanyu.project.pojo;
 
-public class PasswordDO {
+import java.io.Serializable;
+
+public class PasswordDO implements Serializable {
     private int id;
     private String encryptPassword;
     private int userId;
