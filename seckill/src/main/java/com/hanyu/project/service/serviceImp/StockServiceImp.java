@@ -28,9 +28,9 @@ public class StockServiceImp implements StockService {
             return false;
         }
         //发布消息到MQ,让consumer执行数据库扣减操作
-        boolean flag = mqProducer.sendMessage(itemId,num);
-        if(flag == false)
-            redisTemplate.opsForValue().increment("promo_item_stock" + itemId, num);
+//        boolean flag = mqProducer.sendMessage(itemId,num);
+//        if(flag == false)
+//            redisTemplate.opsForValue().increment("promo_item_stock" + itemId, num);
         return true;
         //Integer result = stockMapper.decreaseStock(itemId,num);
     }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hanyu.project.mapper.StockWaterMapper">
+    <insert id="insertStockWater" useGeneratedKeys="true" keyProperty="id">
+        insert into stockWater(id,itemId,amount,status)
+        values(#{id},#{itemId},#{amount},#{status})
+    </insert>
+    <update id="updateStockWater">
+        update stockWater set status = #{status}
+        where id = #{id}
+    </update>
+    <select id="selectStatus" resultType="int">
+        select status from stockWater
+        where id = #{id}
+    </select>
+</mapper>
