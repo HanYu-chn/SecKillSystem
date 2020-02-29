@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.seckill.system.promoservice.mapper.PromoMapper">
+    <select id="getPromoById" resultType="com.seckillSystem.pojo.PromoDO">
+        select * from promo where id = #{id}
+    </select>
+    <select id="getPromoByItemId" resultType="com.seckillSystem.pojo.PromoDO">
+        select * from promo where itemId = #{id}
+    </select>
+</mapper>
