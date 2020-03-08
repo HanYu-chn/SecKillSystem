@@ -10,8 +10,6 @@ public class ItemModel implements Serializable {
     private String name;
     private String pictureUrl;
     private double price;
-    private int stock;
-    private int sales;
     private PromoDO promoDO;
 
     public PromoDO getPromoDO() {
@@ -54,19 +52,4 @@ public class ItemModel implements Serializable {
         this.price = price;
     }
 
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
-    }
-
-    public int getSales() {
-        return sales;
-    }
-
-    public void setSales(int sales) {
-        this.sales = sales;
-    }
 }
