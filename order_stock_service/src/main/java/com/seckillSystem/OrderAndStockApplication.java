@@ -10,9 +10,9 @@ import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 @MapperScan("com.seckillSystem.mapper")
 @EnableHystrix
 @SpringBootApplication
-public class DemoApplication {
+public class OrderAndStockApplication {
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(OrderAndStockApplication.class, args);
     }
 
 }

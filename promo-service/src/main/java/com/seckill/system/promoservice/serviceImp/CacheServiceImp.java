@@ -1,4 +1,4 @@
-package com.seckill.system.service.serviceImp;
+package com.seckill.system.promoservice.serviceImp;
 
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;

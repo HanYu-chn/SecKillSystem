@@ -18,23 +18,20 @@ public class StockServiceImp implements StockService {
     @Autowired
     RedisTemplate redisTemplate;
 
-    @Autowired
-    MQProducer mqProducer;
-
     @Override
-    public boolean decreaseStock(Integer itemId, Integer num) {
+    public boolean decreaseStockFromRedis(Integer itemId, Integer num) {
         //从redis中扣减库存
         Long result = redisTemplate.opsForValue().increment("promo_item_stock_" + itemId, -num);
         if(result < 0) {
             redisTemplate.opsForValue().increment("promo_item_stock_" + itemId, num);
             return false;
         }
-        //发布消息到MQ,让consumer执行数据库扣减操作
-//        boolean flag = mqProducer.sendMessage(itemId,num);
-//        if(flag == false)
-//            redisTemplate.opsForValue().increment("promo_item_stock" + itemId, num);
         return true;
-        //Integer result = stockMapper.decreaseStock(itemId,num);
+    }
+
+    @Override
+    public boolean decreaseStockFromDB(Integer itemId, Integer num) {
+        return stockMapper.decreaseStock(itemId,num) == 1;
     }
 
     @Override

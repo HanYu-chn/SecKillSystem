@@ -8,6 +8,7 @@ import com.seckillSystem.error.CommonError;
 import com.seckillSystem.model.ItemModel;
 import com.seckillSystem.pojo.ItemDO;
 import com.seckillSystem.pojo.PromoDO;
+import com.seckillSystem.service.CacheService;
 import com.seckillSystem.service.ItemService;
 import com.seckillSystem.service.PromoService;
 import com.seckillSystem.service.StockService;
@@ -25,11 +26,11 @@ public class ItemServiceImp implements ItemService {
     @Autowired
     ItemMapper itemMapper;
 
-    @Autowired
-    StockService stockService;
-
     @Reference
     PromoService promoService;
+
+    @Autowired
+    CacheService cacheService;
 
     @Autowired
     RedisTemplate redisTemplate;
@@ -51,7 +52,10 @@ public class ItemServiceImp implements ItemService {
     //最后再从数据库取
     @Override
     public ItemModel getItemByIdFromCache(Integer id) {
-        ItemModel itemModel = (ItemModel)redisTemplate.opsForValue().get("info_item_" + id);
+        ItemModel itemModel = (ItemModel)cacheService.getValue("info_item_" + id);
+        if(itemModel != null)
+            return itemModel;
+        itemModel = (ItemModel)redisTemplate.opsForValue().get("info_item_" + id);
         if(itemModel == null) {
             itemModel = getItemById(id);
             if(itemModel == null)
@@ -59,6 +63,7 @@ public class ItemServiceImp implements ItemService {
             redisTemplate.opsForValue().set("info_item_" + id,itemModel);
             //redisTemplate.expire("info_item_" + id,5, TimeUnit.MINUTES);
         }
+        cacheService.setValue("info_item_" + id,itemModel);
         return itemModel;
     }
 }

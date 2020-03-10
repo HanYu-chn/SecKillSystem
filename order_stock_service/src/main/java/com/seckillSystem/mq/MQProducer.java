@@ -19,6 +19,7 @@ import javax.annotation.PostConstruct;
 import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 
 @Component
 public class MQProducer {
@@ -54,6 +55,7 @@ public class MQProducer {
                     orderService.creatOrder(userId,itemId,amount,promoId,orderWaterId);
                 }catch (BusinessException ex) {
                     ex.printStackTrace();
+                    //设置库存流水为回滚状态
                     stockWaterService.updateStockWater(2,orderWaterId);
                     return LocalTransactionState.ROLLBACK_MESSAGE;
                 }
@@ -62,7 +64,6 @@ public class MQProducer {
 
             @Override
             public LocalTransactionState checkLocalTransaction(MessageExt messageExt) {
-                System.out.println("我来检查啦---------------------------------");
                 String jsonString  = new String(messageExt.getBody());
                 Map<String,Integer>map = JSON.parseObject(jsonString, Map.class);
                 Integer orderWaterId = map.get("orderWaterId");
@@ -80,10 +81,13 @@ public class MQProducer {
     }
 
     public boolean sendMessage(Integer userId,Integer itemId, Integer amount, Integer promoId,Integer orderWaterId){
-        Map<String,Integer> map = new HashMap<>();
+        Map<String,Object> map = new HashMap<>();
         map.put("itemId",itemId);
         map.put("amount",amount);
         map.put("orderWaterId",orderWaterId);
+        //消息防重复
+        map.put("msgUUID", UUID.randomUUID());
+
         Map<String,Integer> argsMap = new HashMap<>();
         argsMap.put("itemId",itemId);
         argsMap.put("amount",amount);

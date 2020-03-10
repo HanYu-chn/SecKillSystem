@@ -3,7 +3,7 @@ package com.seckillSystem.pojo;
 import java.io.Serializable;
 
 public class OrderDO implements Serializable {
-    private String id;
+    private long id;
     private int userId;
     private int itemId;
     private int amount;
@@ -19,11 +19,11 @@ public class OrderDO implements Serializable {
         this.promoId = promoId;
     }
 
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

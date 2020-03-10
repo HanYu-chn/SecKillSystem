@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequestMapping("/publish")
 public class PublishController {
 
     @Autowired
@@ -16,10 +17,7 @@ public class PublishController {
 
     @Reference
     ItemService itemService;
-    @RequestMapping("/hello")
-    public ReturnResult hello() {
-        return ReturnResult.creat(itemService.hello());
-    }
+
 
     @RequestMapping("/publishItemInfo")
     public ReturnResult publishItemInfo(Integer itemId) {
@@ -29,5 +27,15 @@ public class PublishController {
     @RequestMapping("/publishPromoInfo")
     public ReturnResult publishPromoInfo(Integer promoId) {
         return ReturnResult.creat(publishService.publishPromoInfo(promoId));
+    }
+
+    @RequestMapping("/publishStock")
+    public ReturnResult publishStock(Integer itemId) {
+        return ReturnResult.creat(publishService.publishStock(itemId));
+    }
+
+    @RequestMapping("/publishStockTokenDoor")
+    public ReturnResult publishStockTokenDoor(Integer itemId,Integer promoId) {
+        return ReturnResult.creat(publishService.publishStockTokenDoor(itemId,promoId));
     }
 }
